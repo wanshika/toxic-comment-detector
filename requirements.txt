@@ -6,3 +6,4 @@ joblib
 torch==2.2.0
 transformers==4.36.2
 pillow==9.3.0  # ✅ Compatible with Streamlit 1.24.0
+matplotlib
