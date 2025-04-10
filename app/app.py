@@ -22,6 +22,7 @@ APP_DIR = os.path.dirname(__file__)
 VECTORIZER_PATH = os.path.join(APP_DIR, "../models/tfidf_vectorizer.pkl")
 LOGREG_MODEL_PATH = os.path.join(APP_DIR, "../models/logistic_models.pkl")
 
+
 # Load TF-IDF + Logistic Regression model
 vectorizer = joblib.load(VECTORIZER_PATH)
 logreg_models = joblib.load(LOGREG_MODEL_PATH)
