@@ -1,0 +1,7 @@
+venv/
+data/train.csv
+outputs/
+*.npy
+*.pkl
+__pycache__/
+*.dylib
