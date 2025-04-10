@@ -6,4 +6,5 @@ joblib
 torch==2.2.1+cpu
 transformers==4.36.2
 pillow==9.4.0
-
+setuptools
+python-dotenv
