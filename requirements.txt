@@ -1,10 +1,9 @@
-streamlit
-scikit-learn==1.2.2
+streamlit==1.32.2
+numpy==1.24.4
 pandas
-numpy
+scikit-learn==1.2.2
 joblib
-matplotlib
-seaborn
-torch
-transformers
+transformers==4.38.2
+torch==2.0.1
+
 
