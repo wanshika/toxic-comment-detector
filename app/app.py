@@ -18,9 +18,9 @@ import matplotlib.pyplot as plt
 LABELS = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 
 # Get absolute paths to models
-APP_DIR = os.path.dirname(__file__)
-VECTORIZER_PATH = os.path.join(APP_DIR, "../models/tfidf_vectorizer.pkl")
-LOGREG_MODEL_PATH = os.path.join(APP_DIR, "../models/logreg_model.pkl")
+VECTORIZER_PATH = "models/tfidf_vectorizer.pkl"
+LOGREG_MODEL_PATH = "models/logreg_model.pkl"
+
 
 
 # Load TF-IDF + Logistic Regression model

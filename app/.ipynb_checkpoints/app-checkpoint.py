@@ -18,9 +18,9 @@ import matplotlib.pyplot as plt
 LABELS = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"]
 
 # Get absolute paths to models
-APP_DIR = os.path.dirname(__file__)
-VECTORIZER_PATH = os.path.join(APP_DIR, "../models/tfidf_vectorizer.pkl")
-LOGREG_MODEL_PATH = os.path.join(APP_DIR, "../models/logreg_model.pkl")
+VECTORIZER_PATH = "models/tfidf_vectorizer.pkl"
+LOGREG_MODEL_PATH = "models/logreg_model.pkl"
+
 
 
 # Load TF-IDF + Logistic Regression model
@@ -31,8 +31,8 @@ logreg_models = joblib.load(LOGREG_MODEL_PATH)
 @st.cache_resource
 def load_bert():
     model_name = "unitary/toxic-bert"
-    tokenizer = AutoTokenizer.from_pretrained("bert")
-    model = AutoModelForSequenceClassification.from_pretrained("bert")
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
     model.eval()
     return tokenizer, model
 

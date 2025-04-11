@@ -2,9 +2,9 @@ venv/
 data/train.csv
 outputs/
 *.npy
-#*.pkl
-#!models/tfidf_vectorizer.pkl
-#!models/logreg_model.pkl
+*.pkl
+!models/tfidf_vectorizer.pkl
+!models/logreg_model.pkl
 __pycache__/
 *.dylib
 bert/
