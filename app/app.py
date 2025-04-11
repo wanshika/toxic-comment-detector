@@ -31,8 +31,8 @@ logreg_models = joblib.load(LOGREG_MODEL_PATH)
 @st.cache_resource
 def load_bert():
     model_name = "unitary/toxic-bert"
-    tokenizer = AutoTokenizer.from_pretrained("bert")
-    model = AutoModelForSequenceClassification.from_pretrained("bert")
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSequenceClassification.from_pretrained(model_name)
     model.eval()
     return tokenizer, model
 
