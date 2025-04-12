@@ -57,20 +57,22 @@ if st.button("Analyze") and comment.strip():
     if model_choice == "Logistic Regression":
         if not hasattr(vectorizer, "idf_"):
             st.error("🚨 Vectorizer is not fitted. Please retrain or check the model file.")
-        else:
-            X_input = vectorizer.transform([comment])
-            prob = logreg_model.predict_proba(X_input)[0][1]
-            probs = [prob] * len(LABELS)  # Repeat the same prob for visualization
-    else:
-        encoded = tokenizer_bert(
-            [comment],
-            padding=True,
-            truncation=True,
-            return_tensors="pt"
-        )
-        with torch.no_grad():
-            output = model_bert(**encoded)
-            probs = torch.sigmoid(output.logits).cpu().numpy().flatten()
+            st.stop()
+
+    X_input = vectorizer.transform([comment])
+    prob = logreg_model.predict_proba(X_input)[0][1]
+    probs = [prob] * len(LABELS)
+
+else:
+    encoded = tokenizer_bert(
+        [comment],
+        padding=True,
+        truncation=True,
+        return_tensors="pt"
+    )
+    with torch.no_grad():
+        output = model_bert(**encoded)
+        probs = torch.sigmoid(output.logits).cpu().numpy().flatten()
 
     threshold = 0.5  # You can tweak this for stricter detection
 
