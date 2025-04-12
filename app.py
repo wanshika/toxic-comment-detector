@@ -1,3 +1,7 @@
+# 🛡️ Toxic Comment Classifier
+# 🛠️ Trigger Streamlit redeploy
+
+
 import streamlit as st
 
 # ✅ Must be FIRST Streamlit command
