@@ -1,7 +1,6 @@
 # 🛡️ Toxic Comment Classifier
 # 🛠️ Trigger Streamlit redeploy
 
-
 import streamlit as st
 
 # ✅ Must be FIRST Streamlit command
@@ -15,7 +14,6 @@ import torch
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import joblib
 import numpy as np
-import os
 import matplotlib.pyplot as plt
 
 # Labels
@@ -25,11 +23,9 @@ LABELS = ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate
 VECTORIZER_PATH = "models/tfidf_vectorizer.pkl"
 LOGREG_MODEL_PATH = "models/logreg_model.pkl"
 
-
-
 # Load TF-IDF + Logistic Regression model
 vectorizer = joblib.load(VECTORIZER_PATH)
-logreg_models = joblib.load(LOGREG_MODEL_PATH)
+logreg_model = joblib.load(LOGREG_MODEL_PATH)
 
 # Load Toxic BERT
 @st.cache_resource
@@ -59,8 +55,12 @@ if st.button("Analyze") and comment.strip():
     st.markdown("### 🔍 Prediction Results")
 
     if model_choice == "Logistic Regression":
-        X_input = vectorizer.transform([comment])
-        probs = [model.predict_proba(X_input)[0][1] for model in logreg_models.values()]
+        if not hasattr(vectorizer, "idf_"):
+            st.error("🚨 Vectorizer is not fitted. Please retrain or check the model file.")
+        else:
+            X_input = vectorizer.transform([comment])
+            prob = logreg_model.predict_proba(X_input)[0][1]
+            probs = [prob] * len(LABELS)  # Repeat the same prob for visualization
     else:
         encoded = tokenizer_bert(
             [comment],
@@ -80,7 +80,6 @@ if st.button("Analyze") and comment.strip():
             st.success(f"✅ **{label}** – {confidence_pct}")
         else:
             st.info(f"⚪ **{label}** – {confidence_pct}")
-
 
     # ---------- Visualization ----------
     st.markdown("### 📊 Confidence Scores")
