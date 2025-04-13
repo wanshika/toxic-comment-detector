@@ -9,7 +9,3 @@ __pycache__/
 *.dylib
 bert/
 
-!models/tfidf_vectorizer.pkl
-!models/logreg_model.pkl
-!models/tfidf_vectorizer.pkl
-!models/logreg_model.pkl
